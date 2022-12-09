@@ -1,56 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Recent, Searchbar, Sidebar } from "./components";
+import { Discover, Diary, Search } from "./pages";
+// import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div className="relative flex">
+      <Sidebar />
+      <div className="flex-1 flex flex-col bg-gradient-to-br from-lightPink to-mediumPink">
+        <Searchbar />
+        <div className="px-6 h-[calc(100vh-72px)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
+          <div className="flex-1 h-fit pb-40">
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Discover />} />
+                <Route path="/diary" element={<Diary />} />
+                <Route path="/search/:searchTerm" element={<Search />} />
+              </Routes>
+            </BrowserRouter>
+          </div>
+          <div className="xl:sticky relative top-0 h-fit">
+            <Recent />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
