@@ -1,9 +1,17 @@
-import { Diary } from "./Diary";
-import { Discover } from "./discover/Discover";
-import { Search } from "./Search";
+import Discover from "./discover/Discover";
+import TopWriters from "./TopWriters";
+import WriterDetails from "./WriterDetails";
+import SongDetails from "./SongDetails";
+import Search from "./Search";
+import TopCharts from "./TopCharts";
+import DiaryDetails from "./DiaryDetails";
 
 export {
-    Diary,
-    Discover,
-    Search
+  Discover,
+  DiaryDetails,
+  Search,
+  SongDetails,
+  TopCharts,
+  TopWriters,
+  WriterDetails,
 };

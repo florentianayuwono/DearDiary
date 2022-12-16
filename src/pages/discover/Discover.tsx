@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export function Discover() {
+export default function Discover() {
     return(
         <div></div>
     )

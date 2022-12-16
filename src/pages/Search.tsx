@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export function Search() {
+export default function Search() {
     return(
         <div></div>
     )
