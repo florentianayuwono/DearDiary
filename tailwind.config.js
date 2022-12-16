@@ -7,10 +7,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        white: "#FFFFFF",
         lightYellow: "#FFF5E4",
         lightPink: "#FFE3E1",
         mediumPink: "#FFD1D1",
         deepPink: "#FF9494",
+        red: "#FF5555",
         black: '#191624',
       },
       animation: {
