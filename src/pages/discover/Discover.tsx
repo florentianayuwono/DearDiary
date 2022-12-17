@@ -1,4 +1,4 @@
-import { DiaryCard, Error, Loader } from "../../components";
+import { Card, Error, Loader } from "../../components";
 import { diaryGenres } from "../../assets/constants";
 
 const Discover = () => {
@@ -25,7 +25,7 @@ const Discover = () => {
 
       <div className="flex flex-wrap sm:justify-start justify-center gap-8">
         {diaryGenres.map((diary, i) => (
-          <DiaryCard key={diary.key} diary={diary} i={i} />
+          <Card key={diary.key} diary={diary} i={i} />
         ))}
       </div>
     </div>
