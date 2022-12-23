@@ -3,13 +3,13 @@ import { Searchbar } from "./Searchbar";
 import { Sidebar } from "./Sidebar";
 import MusicPlayer from "./MusicPlayer";
 import TopRead from "./TopRead";
-import DiaryCard from "./DiaryCard";
+import SongCard from "./SongCard";
 import Error from "./Error";
 import Loader from "./Loader";
 
 export {
     MusicPlayer,
-    DiaryCard,
+    SongCard,
     Error,
     Loader,
     Recent,
