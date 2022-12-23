@@ -1,13 +1,20 @@
-import { useAppSelector } from './app/hooks';
-import { Route, Routes } from 'react-router-dom';
+import { useAppSelector } from "./app/hooks";
+import { Route, Routes } from "react-router-dom";
 
-import { Searchbar, Sidebar, MusicPlayer, TopRead } from './components';
-import { WriterDetails, TopWriters, Discover, Search, SongDetails, TopCharts, DiaryDetails } from './pages';
+import { Searchbar, Sidebar, MusicPlayer, TopRead } from "./components";
+import {
+  WriterDetails,
+  TopWriters,
+  Discover,
+  Search,
+  SongDetails,
+  TopCharts,
+  DiaryDetails,
+} from "./pages";
 
 const App = () => {
-  /*
-  const { activeSong } = useAppSelector((state) => state.player);
-  */
+  // const { activeSong } = useAppSelector((state) => state.player);
+
   return (
     <div className="relative flex">
       <Sidebar />

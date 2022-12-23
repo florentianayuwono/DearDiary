@@ -1,6 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+export interface Track {
+  track: string
+}
+export interface PlayerState {
+  currentSongs: Track[],
+  currentIndex: number,
+  isActive: boolean,
+  isPlaying: boolean,
+  activeSong: {},
+  genreListId: string
+}
+
+const initialState: PlayerState = {
   currentSongs: [],
   currentIndex: 0,
   isActive: false,
@@ -27,7 +39,7 @@ const playerSlice = createSlice({
       state.currentIndex = action.payload.i;
       state.isActive = true;
     },
-    /*
+
     nextSong: (state, action) => {
       if (state.currentSongs[action.payload]?.track) {
         state.activeSong = state.currentSongs[action.payload]?.track;
@@ -49,7 +61,7 @@ const playerSlice = createSlice({
       state.currentIndex = action.payload;
       state.isActive = true;
     },
-    */
+
     playPause: (state, action) => {
       state.isPlaying = action.payload;
     },
