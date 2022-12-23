@@ -1,6 +1,7 @@
-import { Card, Error, Loader } from "../components";
+import { SongCard, Error, Loader } from "../components";
 import { musicGenres } from "../assets/constants";
 import { useGetTopChartsQuery } from "../services/shazamCore";
+import { Song } from "../components/SongCard";
 
 const TopCharts = () => {
   const { data, isFetching, error } = useGetTopChartsQuery();
@@ -30,8 +31,8 @@ const TopCharts = () => {
       </div>
 
       <div className="flex flex-wrap sm:justify-start justify-center gap-8">
-        {data?.map((song, i) => (
-          <Card key={song.key} song={song} i={i} />
+        {data?.map((song:Song, i:number) => (
+          <SongCard key={song.key} song={song} index={i} />
         ))}
       </div>
     </div>

@@ -13,6 +13,8 @@ module.exports = {
         mediumPink: "#FFD1D1",
         deepPink: "#FF9494",
         red: "#FF5555",
+        maroon: "#993441",
+        rose: "#CC313D",
         black: '#191624',
       },
       animation: {
