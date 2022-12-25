@@ -9,6 +9,7 @@ module.exports = {
       colors: {
         white: "#FFFFFF",
         lightYellow: "#FFF5E4",
+        brandPink: "#FEDAEF",
         lightPink: "#FFE3E1",
         mediumPink: "#FFD1D1",
         deepPink: "#FF9494",

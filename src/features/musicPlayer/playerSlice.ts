@@ -1,14 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
+import { Song } from "../../components/SongCard";
 export interface Track {
-  track: string
+  track: string;
 }
 export interface PlayerState {
-  currentSongs: Track[],
-  currentIndex: number,
-  isActive: boolean,
-  isPlaying: boolean,
-  activeSong: {},
-  genreListId: string
+  currentSongs: Track[];
+  currentIndex: number;
+  isActive: boolean;
+  isPlaying: boolean;
+  activeSong: Song;
+  genreListId: string;
 }
 
 const initialState: PlayerState = {
@@ -16,12 +17,12 @@ const initialState: PlayerState = {
   currentIndex: 0,
   isActive: false,
   isPlaying: false,
-  activeSong: {},
-  genreListId: '',
+  activeSong: { title: "", subtitle: "", key: 0 },
+  genreListId: "",
 };
 
 const playerSlice = createSlice({
-  name: 'player',
+  name: "player",
   initialState,
   reducers: {
     setActiveSong: (state, action) => {
@@ -71,6 +72,12 @@ const playerSlice = createSlice({
   },
 });
 
-export const { setActiveSong, nextSong, prevSong, playPause, selectGenreListId } = playerSlice.actions;
+export const {
+  setActiveSong,
+  nextSong,
+  prevSong,
+  playPause,
+  selectGenreListId,
+} = playerSlice.actions;
 
 export default playerSlice.reducer;
