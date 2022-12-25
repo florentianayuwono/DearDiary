@@ -1,2 +1,4 @@
 import loader from "./loader.svg";
-export {loader};
+import logo from "./logo.png";
+
+export { loader, logo };
