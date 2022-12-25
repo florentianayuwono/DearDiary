@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-
 export interface Track {
   track: string
 }

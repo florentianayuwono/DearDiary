@@ -1,13 +1,16 @@
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { SongCard, Error, Loader } from "../components";
 import { musicGenres } from "../assets/constants";
 import { useGetTopChartsQuery } from "../services/shazamCore";
 import { Song } from "../components/SongCard";
 
 const TopCharts = () => {
+  const dispatch = useAppDispatch();
+  const { activeSong, isPlaying } = useAppSelector((state) => state.player);
   const { data, isFetching, error } = useGetTopChartsQuery();
   const genreTitle = "Pop";
 
-  if(isFetching) return <Loader title="Right away, Your Highness🙇" />;
+  if (isFetching) return <Loader title="Right away, Your Highness🙇" />;
 
   if (error) return <Error />;
 
@@ -31,8 +34,15 @@ const TopCharts = () => {
       </div>
 
       <div className="flex flex-wrap sm:justify-start justify-center gap-8">
-        {data?.map((song:Song, i:number) => (
-          <SongCard key={song.key} song={song} index={i} />
+        {data?.map((song: Song, i: number) => (
+          <SongCard
+            key={song.key}
+            song={song}
+            index={i}
+            isPlaying={isPlaying}
+            activeSong={activeSong}
+            data={data}
+          />
         ))}
       </div>
     </div>
