@@ -1,3 +1,5 @@
+import Authentication from "./Authentication"
+import Dashboard from "./Dashboard";
 import Discover from "./discover/Discover";
 import TopWriters from "./TopWriters";
 import WriterDetails from "./WriterDetails";
@@ -7,6 +9,8 @@ import TopCharts from "./TopCharts";
 import DiaryDetails from "./DiaryDetails";
 
 export {
+  Authentication,
+  Dashboard,
   Discover,
   DiaryDetails,
   Search,
