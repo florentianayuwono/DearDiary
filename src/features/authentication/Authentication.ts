@@ -44,6 +44,7 @@ export const authenticationSlice = createSlice({
               } else {
                 localStorage.setItem("auth", JSON.stringify(null));
               }
+              window.location.reload();
               return {
                 ...state,
                 token: user.token,
