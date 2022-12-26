@@ -1,6 +1,7 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
 import playerReducer from '../features/musicPlayer/playerSlice';
+import authenticationReducer from '../features/authentication/Authentication';
 import  discoverReducer  from '../pages/discover/DiscoverSlice';
 import { shazamCoreApi } from "../services/shazamCore";
 
@@ -9,7 +10,8 @@ export const store = configureStore({
     counter: counterReducer,
     [shazamCoreApi.reducerPath]: shazamCoreApi.reducer,
     player: playerReducer,
-    discover: discoverReducer
+    // discover: discoverReducer
+    authenticator: authenticationReducer
   },
   middleware:  (getDefaultMiddleware) => getDefaultMiddleware().concat(shazamCoreApi.middleware),
 });

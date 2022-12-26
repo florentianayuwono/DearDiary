@@ -1,9 +1,8 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { FaBuromobelexperte } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch } from "../app/hooks";
 import { darkenLogo, deardiary, logo } from "../assets";
-import { authenticate } from "./discover/DiscoverSlice";
+import { authenticate } from "../features/authentication/Authentication";
 
 const Authentication = () => {
   const { form } = useParams();
@@ -14,22 +13,6 @@ const Authentication = () => {
   });
   
   const dispatch = useAppDispatch();
-  const navigateTo = useNavigate();
-
-//   useEffect(() => {
-//     if (userData) {
-//       console.log(userData);
-//       const { token, user } = userData;
-//       dispatch(
-//         authenticate({
-//           type: "auth",
-//           payload: { token, username: user.username },
-//         })
-//       );
-//       localStorage.setItem("auth", JSON.stringify({ token, username: user.username }));
-//       //navigateTo("/dashboard");
-//     }
-//   }, [userData]);
 
     const actions = {
       signup: {
@@ -42,35 +25,6 @@ const Authentication = () => {
       },
     };
 
-//   const state = {
-//     url: "https://deardiary.onrender.com",
-//     token: "",
-//     username: "",
-//   };
-
-//   const actions = {
-//     signup: async () => {
-//       const response = await fetch(state.url + "/users", {
-//               method: "POST",
-//               headers: {
-//                   "Content-Type": "application/json",
-//               },
-//               body: JSON.stringify(formData),
-//           });
-//           return await response.json();
-//     },
-//     login: async () => {
-//       const response = await fetch(state.url + "/login", {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify(formData),
-//         });
-//         return await response.json();
-//     },
-//   };
-
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
@@ -79,9 +33,6 @@ const Authentication = () => {
     event.preventDefault();
     const action = form === "login" ? "login" : "signup";
     dispatch(authenticate(actions[action]))
-    // actions[action]().then((data) => {
-    //   setUserData(data);
-    // });
   };
 
   return (
