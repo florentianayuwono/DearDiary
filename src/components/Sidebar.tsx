@@ -1,34 +1,78 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { HiOutlineMenu } from "react-icons/hi";
+import React, { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { HiLogout, HiOutlineMenu } from "react-icons/hi";
 import { RiCloseLine } from "react-icons/ri";
 
 import { logo } from "../assets";
-import { links } from "../assets/constants";
+import { loggedInLinks, loggedOutLinks } from "../assets";
+import { useAppDispatch } from "../app/hooks";
+import { authenticate } from "../features/authentication/Authentication";
 
 export interface NavLinks {
   handleClick?: () => void;
 }
 
-const NavLinks = ({ handleClick }: NavLinks) => (
-  <div className="mt-10">
-    {links.map((item) => (
-      <NavLink
-        key={item.name}
-        to={item.to}
-        className={({ isActive }) =>
-          isActive
-            ? "flex flex-row justify-start items-center my-8 text-sm font-medium text-lightYellow"
-            : "flex flex-row justify-start items-center my-8 text-sm font-medium text-brandPink hover:text-lightYellow"
-        }
-        onClick={() => handleClick && handleClick()}
-      >
-        <item.icon className="w-6 h-6 mr-2" />
-        {item.name}
-      </NavLink>
-    ))}
-  </div>
-);
+const NavLinks = ({ handleClick }: NavLinks) => {
+  const loggedIn = localStorage.getItem("auth");
+  const dispatch = useAppDispatch();
+  if (loggedIn !== null) {
+    return (
+      <div className="mt-10">
+        {loggedInLinks.map((item) => (
+          <NavLink
+            key={item.name}
+            to={item.to}
+            className={({ isActive }) =>
+              isActive
+                ? "flex flex-row justify-start items-center my-8 text-sm font-medium text-lightYellow"
+                : "flex flex-row justify-start items-center my-8 text-sm font-medium text-brandPink hover:text-lightYellow"
+            }
+            onClick={() => handleClick && handleClick()}
+          >
+            <item.icon className="w-6 h-6 mr-2" />
+            {item.name}
+          </NavLink>
+        ))}
+        <NavLink
+          key="logout"
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "flex flex-row justify-start items-center my-8 text-sm font-medium text-lightYellow"
+              : "flex flex-row justify-start items-center my-8 text-sm font-medium text-brandPink hover:text-lightYellow"
+          }
+          onClick={() => {
+            dispatch(authenticate({ type: "logout" }))
+            useNavigate()("/")
+          }}
+        >
+          <HiLogout className="w-6 h-6 mr-2" />
+          Logout
+        </NavLink>
+      </div>
+    );
+  } else {
+    return (
+      <div className="mt-10">
+        {loggedOutLinks.map((item) => (
+          <NavLink
+            key={item.name}
+            to={item.to}
+            className={({ isActive }) =>
+              isActive
+                ? "flex flex-row justify-start items-center my-8 text-sm font-medium text-lightYellow"
+                : "flex flex-row justify-start items-center my-8 text-sm font-medium text-brandPink hover:text-lightYellow"
+            }
+            onClick={() => handleClick && handleClick()}
+          >
+            <item.icon className="w-6 h-6 mr-2" />
+            {item.name}
+          </NavLink>
+        ))}
+      </div>
+    );
+  }
+};
 
 const Sidebar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

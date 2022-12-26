@@ -1,4 +1,6 @@
-import { HiOutlineHashtag, HiOutlineHome, HiOutlinePhotograph, HiOutlineUserGroup } from 'react-icons/hi';
+import { FaDatabase, FaRegistered } from 'react-icons/fa';
+import { HiLogin, HiLogout, HiOutlineHashtag, HiOutlineHome, HiOutlinePhotograph, HiOutlineUserGroup } from 'react-icons/hi';
+import { RiRegisteredFill, RiUserSettingsFill } from 'react-icons/ri';
 
 export const musicGenres = [
   { title: 'Pop', value: 'POP' },
@@ -23,7 +25,16 @@ export const diaryGenres = [
     { title: 'Daily Ramble', value: 'DAILY_RAMBLE'}
 ];
 
-export const links = [
+export const loggedOutLinks = [
+  { name: 'Discover', to: '/', icon: HiOutlineHome },
+  { name: 'Most Read', to: '/top-read', icon: HiOutlinePhotograph },
+  { name: 'Top Writers', to: '/top-writers', icon: HiOutlineUserGroup },
+  { name: 'Top Charts', to: '/top-charts', icon: HiOutlineHashtag },
+  { name: 'Login', to: 'authentication/login', icon: HiLogin},
+  { name: 'Sign Up', to: 'authentication/signup', icon: RiUserSettingsFill}
+];
+
+export const loggedInLinks = [
   { name: 'Discover', to: '/', icon: HiOutlineHome },
   { name: 'Most Read', to: '/top-read', icon: HiOutlinePhotograph },
   { name: 'Top Writers', to: '/top-writers', icon: HiOutlineUserGroup },

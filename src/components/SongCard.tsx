@@ -14,11 +14,12 @@ export interface SongCard {
 }
 
 export interface Song {
-  key: number;
-  title: string;
-  subtitle: string;
+  key: string;
+  title?: string;
+  subtitle?: string;
   images?: Images;
   artists?: Artist[];
+  track?: string;
 }
 
 export interface Images {

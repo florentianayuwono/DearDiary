@@ -4,11 +4,11 @@ export interface Track {
   track: string;
 }
 export interface PlayerState {
-  currentSongs: Track[];
+  currentSongs: Song[];
   currentIndex: number;
   isActive: boolean;
   isPlaying: boolean;
-  activeSong: Song;
+  activeSong?: Song;
   genreListId: string;
 }
 
@@ -17,7 +17,7 @@ const initialState: PlayerState = {
   currentIndex: 0,
   isActive: false,
   isPlaying: false,
-  activeSong: { title: "", subtitle: "", key: 0 },
+  activeSong: {key: ""},
   genreListId: "",
 };
 
