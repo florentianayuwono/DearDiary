@@ -85,7 +85,7 @@ export const authenticationSlice = createSlice({
             token: null,
             username: null,
           };
-          localStorage.setItem("auth", JSON.stringify(null));
+          localStorage.removeItem("auth");
           return newState;
           break;
         default:

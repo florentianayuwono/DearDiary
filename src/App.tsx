@@ -15,18 +15,9 @@ import {
 } from "./pages";
 
 const App = () => {
-  const { activeSong } = useAppSelector((state) => state.player);
+  const loggedIn = localStorage.getItem("auth");
 
-  // const dispatch = useAppDispatch();
-  // const navigateTo = useNavigate();
-  // const loggedIn = localStorage.getItem("auth");
-  // console.log(loggedIn)
-  // if (loggedIn !== "null") {
-  //   dispatch({ type: "auth", payload: loggedIn });
-  //   // navigateTo("/dashboard");
-  // } else {
-  //   // navigateTo("/");
-  // }
+  const { activeSong } = useAppSelector((state) => state.player);
 
   return (
     <div className="relative flex">

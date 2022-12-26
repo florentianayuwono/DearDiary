@@ -15,7 +15,7 @@ export interface NavLinks {
 const NavLinks = ({ handleClick }: NavLinks) => {
   const loggedIn = localStorage.getItem("auth");
   const dispatch = useAppDispatch();
-  if (loggedIn !== "null") {
+  if (loggedIn !== null) {
     return (
       <div className="mt-10">
         {loggedInLinks.map((item) => (
