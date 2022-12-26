@@ -1,5 +1,5 @@
-import { useAppSelector } from "./app/hooks";
-import { Route, Routes } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 import { Searchbar, Sidebar, MusicPlayer, TopRead } from "./components";
 import {
@@ -11,11 +11,22 @@ import {
   TopCharts,
   DiaryDetails,
   Authentication,
-  Dashboard
+  Dashboard,
 } from "./pages";
 
 const App = () => {
   const { activeSong } = useAppSelector((state) => state.player);
+
+  // const dispatch = useAppDispatch();
+  // const navigateTo = useNavigate();
+  // const loggedIn = localStorage.getItem("auth");
+  // console.log(loggedIn)
+  // if (loggedIn !== "null") {
+  //   dispatch({ type: "auth", payload: loggedIn });
+  //   // navigateTo("/dashboard");
+  // } else {
+  //   // navigateTo("/");
+  // }
 
   return (
     <div className="relative flex">
@@ -27,7 +38,10 @@ const App = () => {
           <div className="flex-1 h-fit pb-40">
             <Routes>
               <Route path="/" element={<Discover />} />
-              <Route path="/authentication/:form" element={<Authentication />} />
+              <Route
+                path="/authentication/:form"
+                element={<Authentication />}
+              />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/top-writers" element={<TopWriters />} />
               <Route path="/top-read" element={<TopRead />} />

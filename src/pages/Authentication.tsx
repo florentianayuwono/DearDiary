@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useRouteLoaderData } from "react-router-dom";
 import { useAppDispatch } from "../app/hooks";
 import { darkenLogo, deardiary, logo } from "../assets";
 import { authenticate } from "../features/authentication/Authentication";
@@ -11,19 +11,19 @@ const Authentication = () => {
     username: "",
     password: "",
   });
-  
+
   const dispatch = useAppDispatch();
 
-    const actions = {
-      signup: {
-        type: "signup",
-        payload: formData,
-      },
-      login: {
-        type: "login",
-        payload: formData,
-      },
-    };
+  const actions = {
+    signup: {
+      type: "signup",
+      payload: formData,
+    },
+    login: {
+      type: "login",
+      payload: formData,
+    },
+  };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -32,7 +32,7 @@ const Authentication = () => {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     const action = form === "login" ? "login" : "signup";
-    dispatch(authenticate(actions[action]))
+    dispatch(authenticate(actions[action]));
   };
 
   return (

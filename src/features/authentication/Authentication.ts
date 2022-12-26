@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks";
 import { RootState, AppThunk } from "../../app/store";
 
 export interface AuthenticationState {
   url: string;
-  token: string;
-  username: string;
+  token: string | null;
+  username: string | null;
 }
 
 const initialState: AuthenticationState = {
@@ -22,6 +23,7 @@ export const authenticationSlice = createSlice({
   reducers: {
     // action = {type: "", payload: ---}
     authenticate: (state, action) => {
+      let newState;
       switch (action.payload.type) {
         case "signup":
           fetch(state.url + "/users", {
@@ -34,10 +36,14 @@ export const authenticationSlice = createSlice({
             .then((response) => response.json())
             .then((user) => {
               console.log(user);
-              localStorage.setItem(
-                "auth",
-                JSON.stringify({ token: user.token, username: user.username })
-              );
+              if (!user.error) {
+                localStorage.setItem(
+                  "auth",
+                  JSON.stringify({ token: user.token, username: user.username })
+                );
+              } else {
+                localStorage.setItem("auth", JSON.stringify(null));
+              }
               return {
                 ...state,
                 token: user.token,
@@ -56,16 +62,30 @@ export const authenticationSlice = createSlice({
             .then((response) => response.json())
             .then((user) => {
               console.log(user);
-              localStorage.setItem(
-                "auth",
-                JSON.stringify({ token: user.token, username: user.username })
-              );
+              if (!user.error) {
+                localStorage.setItem(
+                  "auth",
+                  JSON.stringify({ token: user.token, username: user.username })
+                );
+              } else {
+                localStorage.setItem("auth", JSON.stringify(null));
+              }
+              window.location.reload();
               return {
                 ...state,
                 token: user.token,
                 user: user.user,
               };
             });
+          break;
+        case "logout":
+          newState = {
+            ...state,
+            token: null,
+            username: null,
+          };
+          localStorage.setItem("auth", JSON.stringify(null));
+          return newState;
           break;
         default:
           return state;
