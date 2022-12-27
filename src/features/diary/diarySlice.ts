@@ -18,11 +18,10 @@ export const diarySlice = createSlice({
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     // action = {type: "", payload: ---}
-    // readDiary: async (state) => {
-    //     const url = useAppSelector((state) => state.authenticator.url)
-    //     const response = fetch(url + "/notes/")
-    //     const notes = (await response).json()
-    //     return notes;
+     getDiary: (state, action) => {
+        state.notes = action.payload;
+        console.log(state.notes)
+     }
 
     // },
     // diary: (state, action) => {
@@ -98,5 +97,5 @@ export const diarySlice = createSlice({
   },
 });
 
-// export const { diary } = diarySlice.actions;
+export const { getDiary } = diarySlice.actions;
 export default diarySlice.reducer;

@@ -5,7 +5,7 @@ import { RiCloseLine } from "react-icons/ri";
 
 import { logo } from "../assets";
 import { loggedInLinks, loggedOutLinks } from "../assets";
-import { useAppDispatch } from "../app/hooks";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { authenticate } from "../features/authentication/authenticationSlice";
 
 export interface NavLinks {
@@ -13,9 +13,9 @@ export interface NavLinks {
 }
 
 const NavLinks = ({ handleClick }: NavLinks) => {
-  const loggedIn = localStorage.getItem("auth");
+  const loggedIn = localStorage.getItem("auth")
   const dispatch = useAppDispatch();
-  if (loggedIn !== null) {
+  if (loggedIn) {
     return (
       <div className="mt-10">
         {loggedInLinks.map((item) => (
