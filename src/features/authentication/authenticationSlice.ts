@@ -8,12 +8,14 @@ export interface AuthenticationState {
   url: string;
   token: string | null;
   username: string | null;
+  loggedIn: boolean;
 }
 
 const initialState: AuthenticationState = {
   url: "https://deardiary.onrender.com",
-  token: "",
-  username: "",
+  token: null,
+  username: null,
+  loggedIn: false,
 };
 
 export const authenticationSlice = createSlice({
@@ -41,18 +43,18 @@ export const authenticationSlice = createSlice({
                   "auth",
                   JSON.stringify({ token: user.token, username: user.username })
                 );
-              } else {
-                localStorage.setItem("auth", JSON.stringify(null));
+                state.loggedIn = true;
               }
-              window.location.reload();
+
               return {
                 ...state,
                 token: user.token,
-                user: user.user,
+                username: user.user.username
               };
             });
           break;
         case "login":
+          console.log(action.payload);
           fetch(state.url + "/login", {
             method: "POST",
             headers: {
@@ -62,24 +64,22 @@ export const authenticationSlice = createSlice({
           })
             .then((response) => response.json())
             .then((user) => {
-              console.log(user);
               if (!user.error) {
                 localStorage.setItem(
                   "auth",
                   JSON.stringify({ token: user.token, username: user.username })
                 );
-              } else {
-                localStorage.setItem("auth", JSON.stringify(null));
+                state.loggedIn = true;
               }
-              window.location.reload();
               return {
                 ...state,
                 token: user.token,
-                user: user.user,
+                username: user.user.username
               };
             });
           break;
         case "logout":
+          console.log(state);
           newState = {
             ...state,
             token: null,

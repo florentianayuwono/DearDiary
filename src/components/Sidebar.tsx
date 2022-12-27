@@ -6,7 +6,7 @@ import { RiCloseLine } from "react-icons/ri";
 import { logo } from "../assets";
 import { loggedInLinks, loggedOutLinks } from "../assets";
 import { useAppDispatch } from "../app/hooks";
-import { authenticate } from "../features/authentication/Authentication";
+import { authenticate } from "../features/authentication/authenticationSlice";
 
 export interface NavLinks {
   handleClick?: () => void;

@@ -2,7 +2,7 @@ import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useNavigate, useParams, useRouteLoaderData } from "react-router-dom";
 import { useAppDispatch } from "../app/hooks";
 import { darkenLogo, deardiary, logo } from "../assets";
-import { authenticate } from "../features/authentication/Authentication";
+import { authenticate } from "../features/authentication/authenticationSlice";
 
 const Authentication = () => {
   const { form } = useParams();
